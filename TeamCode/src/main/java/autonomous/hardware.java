@@ -1,6 +1,7 @@
 package autonomous;
 
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 
 public class hardware {
-    public Servo scan;
+    public Servo scan, ledstrip;
 
 
     private HardwareMap hardwareMap;
@@ -20,12 +21,15 @@ public class hardware {
     }
 
     public void init() {
-        this.scan = (Servo) hardwareMap.servo.get("scan");
+        this.scan =  hardwareMap.servo.get("scan");
+        this.ledstrip = hardwareMap.servo.get("ledstrip");
+
         reset();
     }
 
     public void reset() {
         scan.setPosition(0.5);
+        ledstrip.setPosition(0.74);
     }
 
     public void setGear(Gear gear) {
@@ -51,4 +55,5 @@ public class hardware {
         }
     }
     public Servo getScan(){return scan;}
+    public Servo getLedstrip(){return ledstrip;}
 }
